@@ -1,49 +1,186 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AplicacionController!{% endblock %}
+{% block title %}Hello AplicacionController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+		:root {
+			--gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+		}
 
 
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">DIAMANTO</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="./producto">Productos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./marca">Marca</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./tipo">Tipo</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./material">Material</a>
-      </li>
-       
-      {# <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li> #}
-    </ul>
-  </div>
-</nav>
+		.card {
+			background: #222;
+			border: 1px solid #dd2476;
+			color: rgba(250, 250, 250, 0.8);
+			margin-bottom: 2rem;
 
-{% endblock %}
+		}
+
+		.btn {
+			border: 5px solid;
+			border-image-slice: 1;
+			background: var(--gradient) !important;
+			-webkit-background-clip: text !important;
+			-webkit-text-fill-color: transparent !important;
+			border-image-source: var(--gradient) !important;
+			text-decoration: none;
+			transition: all 0.4s ease;
+		}
+
+		.btn:hover,
+		.btn:focus {
+			background: var(--gradient) !important;
+			-webkit-background-clip: none !important;
+			-webkit-text-fill-color: #fff !important;
+			border: 5px solid #fff !important;
+			box-shadow: #222 1px 0 10px;
+			text-decoration: underline;
+		}
+ 
+	</style>
+
+	{# 
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">DIAMANTO</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Home
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./producto">Productos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./marca">Marca</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./tipo">Tipo</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./material">Material</a>
+					</li>
+	
+				
+				</ul>
+			</div>
+		</nav> #}
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="./aplicacion">DIAMANTO</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="./aplicacion">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./producto">Productos</a>
+					</li>
+					{# <li class="nav-item dropdown">
+					          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					            Dropdown
+					          </a>
+					          <ul class="dropdown-menu">
+					            <li><a class="dropdown-item" href="#">Action</a></li>
+					            <li><a class="dropdown-item" href="#">Another action</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="#">Something else here</a></li>
+					          </ul>
+					        </li> #}
+					<li class="nav-item">
+						<a class="nav-link " href="./tipo">Tipo</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " href="./material">Material</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " href="./marca">Marca</a>
+					</li>
+				</ul>
+				<form class="d-flex" role="search">
+					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+<div id="container">
+	<div id="productosDiv" style="margin:20px">
+		<div class="row">
+			{% for producto in productos %}
+				<div class=" offset-2 col-md-4">
+					<div class="card" style="width: 18rem;">
+						<img src="https://i.imgur.com/ZTkt4I5.jpg" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">{{producto.nombre}}</h5>
+							<h6 class="card-subtitle mb-2 ">{{producto.precio}}€</h6>
+							<p class="card-text">{{producto.descripcion}}</p>
+							<a href="#" class="btn mr-2">
+								<i class="fas fa-link"></i>
+							Comprar</a>
+							
+								
+						</div>
+					</div>
+				</div>
+         {% else %}
+		            <p>NO HAY PRODUCTOS</p>
+          {% endfor %}
+
+			</div>
+		</div>
+</div>
+
+		{# <table class="table">
+		        <thead>
+		            <tr>
+		                <th>Id</th>
+		                <th>Nombre</th>
+		                <th>Precio</th>
+		                <th>Descripcion</th>
+		                <th>Foto</th>
+		                <th>actions</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		        {% for producto in productos %}
+		            <tr>
+		                <td>{{ producto.id }}</td>
+		                <td>{{ producto.nombre }}</td>
+		                <td>{{ producto.precio }}</td>
+		                <td>{{ producto.descripcion }}</td>
+		                <td>{{ producto.foto }}</td>
+		                <td>
+		                    <a href="{{ path('app_producto_show', {'id': producto.id}) }}">show</a>
+		                    <a href="{{ path('app_producto_edit', {'id': producto.id}) }}">edit</a>
+		                </td>
+		            </tr>
+		        {% else %}
+		            <tr>
+		                <td colspan="6">no records found</td>
+		            </tr>
+		        {% endfor %}
+		        </tbody>
+		    </table>
+			 #}
+
+	{% endblock %}
