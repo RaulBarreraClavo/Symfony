@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CompraController!{% endblock %}
+  {% block javascripts %}
+     <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&locale=en_US"></script>
+<script>
+   paypal.Buttons({
+        // All your options here !
+        createOrder: (data, actions) => {
+            return actions.order.create({
+                intent: 'capture',  // capture or authorize
+                purchase_units: [{
+                        amount: {
+                            value: 50.25
+                        },
+                        description: 'Magical unicorn',
+                        invoice_id: '1234567890',
+                        soft_descriptor: 'unicorn-2345678'
+                }],
+                application_context: {
+                        brand_name: 'My amazing brand',
+                        shipping_preference: 'NO_SHIPPING' // if you handle shipping
+                }
+            });
+        },
+        // Finalizes the transaction after payer approval
+        onApprove: (data) => {
+                console.log('Unicorn bought, yay !')
+        },
+        // The user closed the window
+        onCancel: () => {
+                console.log('The user canceled the payment');
+        },
+        onError: (err) => {
+                console.log('Something went wrong', err);
+        }
+}).render('#paypal-button-container');
+</script>
+        {% endblock %}
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+<div id="paypal-button-container">
+   <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+   <!-- Identify your business so that you can collect the payments. -->
+   <input type="visible" name="business" value="busines-owner-mail@business.example.com
+">
+
+   <!-- Specify a Buy Now button. -->
+   <input type="visible" name="cmd" value="_xclick">
+
+   {# Provide a more specific callback URL here #}
+   <input type="visible" name="return" value="http://127.0.0.1:8000/confirmation">
+
+   <!-- Specify details about the item that buyers will purchase. -->
+   <input type="visible" name="item_name" value="Flying unicorn">
+   {# Be very careful here, take the time to verify if the paid amount corresponds to
+   the Order amount in the return URL #}
+   <input type="visible" name="amount" value="15.85">
+   <input type="visible" name="currency_code" value="EUR">
+
+   <!-- Display the payment button. -->
+   <button type="submit">Give me money 💸</button>
+   <!-- Or use the payment button provided by PayPal. -->
+   <input type="image" name="submit" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="Buy Now">
+   <img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+</form>
+</div>
+
+</div>
+{% endblock %}
